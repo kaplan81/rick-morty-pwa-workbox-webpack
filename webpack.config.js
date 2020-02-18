@@ -1,22 +1,27 @@
+const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/scripts/app.ts',
+  entry: {
+    app: './src/ts/app.ts',
+  },
   devtool: 'inline-source-map',
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    filename: 'app.js',
-    path: path.resolve(__dirname, 'dist/scripts')
-  }
+    filename: 'js/[name].js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  plugins: [new CleanWebpackPlugin(), new CopyPlugin([{ from: 'src/*.html', flatten: true }])],
 };
