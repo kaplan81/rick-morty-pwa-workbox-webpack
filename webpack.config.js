@@ -1,6 +1,7 @@
-const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
+// const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -23,5 +24,11 @@ module.exports = {
     filename: 'js/[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
-  plugins: [new CleanWebpackPlugin(), new CopyPlugin([{ from: 'src/*.html', flatten: true }])],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new CopyPlugin([
+      { from: 'src/*.html', flatten: true },
+      { from: 'src/assets', to: 'assets' },
+    ]),
+  ],
 };
