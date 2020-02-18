@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "esnext",
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "target": "es2015"
+  }
+}

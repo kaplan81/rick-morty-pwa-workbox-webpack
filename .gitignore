@@ -1,0 +1,5 @@
+node_modules
+dist
+lighthouse/**.report.html
+
+.DS_Store
