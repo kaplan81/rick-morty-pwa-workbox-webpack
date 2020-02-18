@@ -29,6 +29,7 @@ module.exports = {
     new CopyPlugin([
       { from: 'src/*.html', flatten: true },
       { from: 'src/assets', to: 'assets' },
+      { from: 'src/pizza.ico' },
     ]),
   ],
 };
