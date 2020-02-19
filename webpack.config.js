@@ -1,7 +1,7 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
-// const WorkboxPlugin = require('workbox-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -31,5 +31,8 @@ module.exports = {
       { from: 'src/assets', to: 'assets' },
       { from: 'src/pizza.ico' },
     ]),
+    new WorkboxPlugin.GenerateSW({
+      swDest: 'js/sw.js',
+    }),
   ],
 };
