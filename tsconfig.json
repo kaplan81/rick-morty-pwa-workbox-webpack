@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "lib": ["es2018", "dom", "webworker"],
     "module": "esnext",
+    "moduleResolution": "node",
     "outDir": "./dist/",
     "sourceMap": true,
     "target": "es2015",

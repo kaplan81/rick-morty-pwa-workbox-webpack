@@ -31,7 +31,8 @@ module.exports = {
       { from: 'src/assets', to: 'assets' },
       { from: 'src/pizza.ico' },
     ]),
-    new WorkboxPlugin.GenerateSW({
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/ts/sw.ts',
       swDest: 'js/sw.js',
     }),
   ],
