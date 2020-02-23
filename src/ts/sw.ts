@@ -3,6 +3,8 @@ import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
+declare var self: WorkerGlobalScope & typeof globalThis;
+
 precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(
