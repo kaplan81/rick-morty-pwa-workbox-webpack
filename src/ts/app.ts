@@ -28,8 +28,9 @@ function init() {
 
 // TODO:
 // Type this document.
-// Check charachter.html
-// Create install.ts
+// Check character.html.
+// Create install.ts.
+// Check on all the steps from previous project (e.g. lighthouse).
 async function renderCharacter() {
   const characterId = rickMortyApp.urlParams.get('id');
   const selectedCharacter = await api.getCharacter(+characterId);
