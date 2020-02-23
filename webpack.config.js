@@ -27,14 +27,15 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin([
+      { from: 'node_modules/animate.css/animate.min.css', to: 'css/animate.min.css' },
       { from: 'src/*.html', flatten: true },
       { from: 'src/assets', to: 'assets' },
+      { from: 'src/manifest.json', to: 'manifest.json' },
       { from: 'src/pizza.ico' },
-      { from: 'node_modules/animate.css/animate.min.css', to: 'css/animate.min.css' },
     ]),
     new WorkboxPlugin.InjectManifest({
       swSrc: './src/ts/sw.ts',
-      swDest: 'js/sw.js',
+      swDest: 'sw.js',
     }),
   ],
 };
