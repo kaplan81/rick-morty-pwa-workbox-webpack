@@ -1,6 +1,6 @@
 import * as api from 'rickmortyapi';
-import { RickMortyApp } from './app.model';
-import { CharacterCard, CharacterDetail, CharacterList } from './character.model';
+import { RickMortyApp } from './models/app.model';
+import { CharacterCard, CharacterDetail, CharacterList } from './models/character.model';
 
 document.addEventListener(
   'DOMContentLoaded',
