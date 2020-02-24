@@ -3,6 +3,5 @@
 > Experimental repo on how to use Workbox 5 with Webpack.
 
 ## TODO
-* Create install.ts.
 * Check on all the steps from previous project (e.g. lighthouse).
 * Create new repo with steps and write article on Ultimate Courses.
