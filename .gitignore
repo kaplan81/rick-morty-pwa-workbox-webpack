@@ -1,5 +1,6 @@
 node_modules
 dist
 lighthouse/**.report.html
+.vscode
 
 .DS_Store
