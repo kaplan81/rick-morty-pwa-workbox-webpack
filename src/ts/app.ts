@@ -1,5 +1,6 @@
 import * as api from 'rickmortyapi';
-import { RickMortyApp } from './app.model';
+import { RickMortyApp } from './models/app.model';
+import { CharacterCard, CharacterDetail, CharacterList } from './models/character.model';
 
 document.addEventListener(
   'DOMContentLoaded',
@@ -27,24 +28,22 @@ function init() {
 }
 
 // TODO:
-// Type this document.
-// Check character.html.
 // Create install.ts.
 // Check on all the steps from previous project (e.g. lighthouse).
-async function renderCharacter() {
-  const characterId = rickMortyApp.urlParams.get('id');
-  const selectedCharacter = await api.getCharacter(+characterId);
-  const status =
+async function renderCharacter(): Promise<any> {
+  const characterId: string = rickMortyApp.urlParams.get('id');
+  const selectedCharacter: CharacterDetail = await api.getCharacter(+characterId);
+  const status: 'dead' | 'alive' =
     selectedCharacter.status === 'Dead' || selectedCharacter.status === 'unknown'
       ? 'dead'
       : 'alive';
 
   console.log('selectedCharacter:::', selectedCharacter);
 
-  const characterHeading = document.querySelector('.character-heading');
+  const characterHeading: HTMLElement = document.querySelector('.character-heading');
   characterHeading.append('This character is ' + status + '!');
 
-  const card = createCard();
+  const card: CharacterCard = createCard();
   card.figure.classList.add('grid-12');
   card.image.setAttribute('src', selectedCharacter.image);
   card.placeholderImage.classList.add('col-12', 'col-sm-6');
@@ -67,18 +66,18 @@ async function renderCharacter() {
   main.style.removeProperty('display');
 }
 
-async function renderCharacters() {
-  const twentyFirstCharacters = await getCharacter();
+async function renderCharacters(): Promise<any> {
+  const twentyFirstCharacters: CharacterList = await api.getCharacter();
   shuffle(twentyFirstCharacters.results);
 
   console.log('twentyFirstCharacters:::', twentyFirstCharacters);
 
   for (const singleCharacter of twentyFirstCharacters.results) {
-    const card = createCard();
+    const card: CharacterCard = createCard();
     card.image.setAttribute('src', singleCharacter.image);
     card.caption.innerHTML = `<h4>${singleCharacter.name}</h4>`;
     card.figure.addEventListener('click', function() {
-      window.location = `/character?id=${singleCharacter.id}`;
+      (window as Window).location.href = `/character?id=${singleCharacter.id}`;
     });
     card.figure.addEventListener('mouseover', function() {
       card.figure.classList.add('pulse');
@@ -91,7 +90,7 @@ async function renderCharacters() {
   main.style.removeProperty('display');
 }
 
-function createCard() {
+function createCard(): CharacterCard {
   const figure = document.createElement('figure');
   const placeholderImage = document.createElement('img');
   const image = document.createElement('img');
@@ -103,7 +102,13 @@ function createCard() {
   return { caption, figure, image, placeholderImage };
 }
 
-function generateFigure(parent, figure, placeholderImage, image, caption) {
+function generateFigure(
+  parent: HTMLElement,
+  figure: HTMLElement,
+  placeholderImage: HTMLElement,
+  image: HTMLElement,
+  caption: HTMLElement,
+): void {
   figure.appendChild(placeholderImage);
   figure.appendChild(image);
   figure.appendChild(caption);
@@ -114,18 +119,18 @@ function generateFigure(parent, figure, placeholderImage, image, caption) {
   });
 }
 
-function shuffle(array) {
-  let currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
+function shuffle(characters: CharacterDetail[]): CharacterDetail[] {
+  let currentIndex: number = characters.length,
+    temporaryValue: CharacterDetail,
+    randomIndex: number;
 
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    temporaryValue = characters[currentIndex];
+    characters[currentIndex] = characters[randomIndex];
+    characters[randomIndex] = temporaryValue;
   }
 
-  return array;
+  return characters;
 }
