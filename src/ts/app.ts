@@ -97,6 +97,7 @@ function createCard(): CharacterCard {
   const caption = document.createElement('figcaption');
   figure.classList.add('character-card', 'animated');
   placeholderImage.setAttribute('src', 'assets/img/placeholders/avatar-placeholder.jpeg');
+  image.setAttribute('alt', 'Rick And Morty character');
   image.style.display = 'none';
 
   return { caption, figure, image, placeholderImage };
